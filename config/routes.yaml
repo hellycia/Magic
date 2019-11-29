@@ -3,5 +3,10 @@
 #    controller: App\Controller\DefaultController::index
 
 list:
-    path: /cake
-    controller: App\Controller\CakeController::list
+    path: /
+    controller: App\Controller\MagicController::list
+
+
+init:
+    path: /init
+    controller: App\Controller\MagicController::init
