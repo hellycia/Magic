@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1> On est à la round: {{ roundNumber }}</h1>
+        {# <h2>A quelle table: table rouge </h2>
+        <h2>Les joueurs qui s'affrontent:</h2>
+        <ul>
+            <li>{{ tables['table rouge'][0].name }}  {{ tables['table rouge'][0].hp }}</li>
+            <li>{{ tables['table rouge'][1].name }}  {{ tables['table rouge'][1].hp }}</li>
+        </ul>
+
+
+    <h1> On est à la round: {{ roundNumber }}</h1>
+        <h2>A quelle table: table bleu </h2>
+        <h2>Les joueurs qui s'affrontent:</h2>
+        <ul>
+            <li>{{ tables['table bleu'][0].name }}  {{ tables['table bleu'][0].hp }}</li>
+            <li>{{ tables['table bleu'][1].name }}  {{ tables['table bleu'][1].hp }}</li>
+        </ul> #}
+
+
+
+    # Pour chaque table,
+        {% for tableName, players in tables %}
+             <h2>A quelle table:{{ tableName }}</h2>
+             <h2>Les joueurs qui s'affrontent:</h2>
+            <ul>
+                {% for player in players %}
+                    <li>{{ player.name }}_{{ player.hp }}_{{ player.cardNumber }} </li>
+                {% endfor %}
+            </ul>
+
+        {% endfor %}
+
+
+    </body>
+</html>

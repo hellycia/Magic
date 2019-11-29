@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+list:
+    path: /cake
+    controller: App\Controller\CakeController::list
