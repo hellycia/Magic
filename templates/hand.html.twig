@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <h1> Carte en main: </h1>
+        <ul>
+            {% for cardName, cardNumber in player.getSortedCards() %}
+                <li> {{ cardNumber }} {{ cardName }}</li>
+            {% endfor %}
+        </ul>
+        {% if player.wantMulligan() %}
+            <p> Le joueur va faire une Mulligan </p>
+            {{ player.mulligan(deck) }}
+            <p> Nouvelle main </p>
+            <ul>
+                {% for cardName, cardNumber in player.getSortedCards() %}
+                    <li> {{ cardNumber }} {{ cardName }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p> Le joueur garde sa main </p>
+        {% endif %}
+
+    </body>
+
+</html>

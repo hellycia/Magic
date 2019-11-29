@@ -14,6 +14,11 @@ class Deck
         $this->cards = $cards;
     }
 
+    public function shuffle(): void
+    {
+        shuffle($this->cards);
+    }
+
     // public function isValid()
     // {
     //     if (count($cards) >= 60) {
@@ -25,7 +30,7 @@ class Deck
 
     public function isValid(): bool
     {
-        return count($cards) >= self:: STARTING_DECK_MIN;
+        return count($this->cards) >= self::STARTING_DECK_MIN;
     }
 
 }
