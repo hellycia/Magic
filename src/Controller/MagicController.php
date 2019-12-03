@@ -6,11 +6,14 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Model\Player;
 use App\Model\Deck;
 use App\Model\Card;
+use App\Model\Creature;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class MagicController extends AbstractController
 {
+    private Player $player1;
+
     public function list()
     {
 
@@ -51,14 +54,18 @@ class MagicController extends AbstractController
         ]);
     }
 
+    public function createPlayers() {
+        $this->player1 = new Player('Anduin');
+    }
+
     public function init()
     {
-        $anduin = new Player('Anduin');
+        $this->createPlayers();
 
         $cards = [];
 
         for ($i = 1; $i <= 30; $i++) {
-            $card = new Card('Nemesis', 3, 'monster');
+            $card = new Creature('Némésis', 3, 'Merfolk Rogue');
             $cards[]= $card;
         }
 
@@ -88,11 +95,11 @@ class MagicController extends AbstractController
         $deck = new Deck($cards);
         $deck->shuffle();
 
-        $anduin->draw(7, $deck);
-        $anduin->getSortedCards();
+        $this->player1->draw(7, $deck);
+        $this->player1->getSortedCards();
 
         return $this->render('hand.html.twig', [
-            'player' => $anduin,
+            'player' => $this->player1,
             'deck' => $deck,
         ]);
 
