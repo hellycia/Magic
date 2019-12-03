@@ -10,6 +10,8 @@ class Card
     public $class;
     public $effect;
 
+    const TYPE_CREATURE = 'creature';
+
     public function __construct(string $name, int $cost, string $class) # quand on fait un new Card, ça lance construct
     {
         $this->name = $name;
