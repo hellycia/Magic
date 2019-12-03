@@ -13,6 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MagicController extends AbstractController
 {
     private Player $player1;
+    private Player $player2;
+    private Deck $deck1;
+    private Deck $deck2;
 
     public function list()
     {
@@ -54,14 +57,14 @@ class MagicController extends AbstractController
         ]);
     }
 
-    public function createPlayers() {
-        $this->player1 = new Player('Anduin');
+    public function createPlayer(string $name)
+    {
+        return new Player($name);
+
     }
 
-    public function init()
+    public function createDeck()
     {
-        $this->createPlayers();
-
         $cards = [];
 
         for ($i = 1; $i <= 30; $i++) {
@@ -92,17 +95,37 @@ class MagicController extends AbstractController
 
         // var_dump($cards);
 
-        $deck = new Deck($cards);
-        $deck->shuffle();
+        return new Deck($cards);
 
-        $this->player1->draw(7, $deck);
+    }
+
+    public function init()
+    {
+        $this->player1 = $this->createPlayer('Anduin');
+        $this->player2 = $this->createPlayer('Sylvanas');
+        $this->deck1 = $this->createDeck();
+        $this->deck1->shuffle();
+        $this->deck2 = $this->createDeck();
+        $this->deck2->shuffle();
+
+        $this->player1->draw(7, $this->deck1);
         $this->player1->getSortedCards();
 
+        $this->player2->draw(7, $this->deck2);
+        $this->player2->getSortedCards();
+
+
+    }
+
+    public function play()
+    {
+        $this->init();
+
         return $this->render('hand.html.twig', [
-            'player' => $this->player1,
-            'deck' => $deck,
+            'playerone' => $this->player1,
+            'playertwo' => $this->player2,
+            'deckone' => $this->deck1,
+            'decktwo' => $this->deck2,
         ]);
-
-
     }
 }

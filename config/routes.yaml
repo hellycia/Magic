@@ -8,5 +8,5 @@ list:
 
 
 init:
-    path: /init
-    controller: App\Controller\MagicController::init
+    path: /play
+    controller: App\Controller\MagicController::play

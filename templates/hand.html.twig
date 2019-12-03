@@ -2,18 +2,38 @@
 <html>
 
     <body>
-        <h1> Carte en main: </h1>
+        <h1> Carte en main de {{ playerone.name }}: </h1>
         <ul>
-            {% for cardName, cardNumber in player.getSortedCards() %}
+            {% for cardName, cardNumber in playerone.getSortedCards() %}
                 <li> {{ cardNumber }} {{ cardName }}</li>
             {% endfor %}
         </ul>
-        {% if player.wantMulligan() %}
+        {% if playerone.wantMulligan() %}
             <p> Le joueur va faire une Mulligan </p>
-            {{ player.mulligan(deck) }}
+            {{ playerone.mulligan(deckone) }}
             <p> Nouvelle main </p>
             <ul>
-                {% for cardName, cardNumber in player.getSortedCards() %}
+                {% for cardName, cardNumber in playerone.getSortedCards() %}
+                    <li> {{ cardNumber }} {{ cardName }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p> Le joueur garde sa main </p>
+        {% endif %}
+
+
+        <h1> Carte en main de {{ playertwo.name }}: </h1>
+        <ul>
+            {% for cardName, cardNumber in playertwo.getSortedCards() %}
+                <li> {{ cardNumber }} {{ cardName }}</li>
+            {% endfor %}
+        </ul>
+        {% if playertwo.wantMulligan() %}
+            <p> Le joueur va faire une Mulligan </p>
+            {{ playertwo.mulligan(decktwo) }}
+            <p> Nouvelle main </p>
+            <ul>
+                {% for cardName, cardNumber in playertwo.getSortedCards() %}
                     <li> {{ cardNumber }} {{ cardName }}</li>
                 {% endfor %}
             </ul>
