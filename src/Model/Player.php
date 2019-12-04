@@ -32,7 +32,7 @@ class Player
         for ($i = 0; $i < $drawingCardNumber; $i ++) {
             $card = $deck->cards[0];
             array_shift($deck->cards);
-            $this->cards[] = $card;
+            $this->cards[] = $card; #main du joueur
         }
     }
     #ranger les cartes dans le tableau assossiatif: on utilise le nom des cartes, si le nom est déjà apparu on met + 1

@@ -20,6 +20,13 @@
         {% else %}
             <p> Le joueur garde sa main </p>
         {% endif %}
+        <p> Board: </p>
+        <ul>
+            {% for card in boardone %}
+                    {{ card.type }}
+            {% endfor %}
+        </ul>
+
 
 
         <h1> Carte en main de {{ playertwo.name }}: </h1>
@@ -40,6 +47,13 @@
         {% else %}
             <p> Le joueur garde sa main </p>
         {% endif %}
+
+        <p> Board: </p>
+        <ul>
+            {% for cardName, cardNumber in playertwo %}
+                    <li> {{ cardNumber }} {{ cardName }}</li>
+            {% endfor %}
+        </ul>
 
     </body>
 

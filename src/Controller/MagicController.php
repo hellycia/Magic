@@ -12,10 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MagicController extends AbstractController
 {
-    private Player $player1;
-    private Player $player2;
-    private Deck $deck1;
-    private Deck $deck2;
+    public Player $player1;
+    public Player $player2;
+    public Deck $deck1;
+    public Deck $deck2;
+    public array $board1;
+    public array $board2;
 
     public function list()
     {
@@ -68,7 +70,7 @@ class MagicController extends AbstractController
         $cards = [];
 
         for ($i = 1; $i <= 30; $i++) {
-            $card = new Creature('Némésis', 3, 'Merfolk Rogue');
+            $card = new Creature('Némésis', 3, 'Merfolk Rogue',);
             $cards[]= $card;
         }
 
@@ -81,8 +83,6 @@ class MagicController extends AbstractController
             $card = new Card('Force of Will', 3, 'spell');
             $cards[]= $card;
         }
-
-
 
 
         # autre manière de faire une boucle ++
@@ -114,18 +114,36 @@ class MagicController extends AbstractController
         $this->player2->draw(7, $this->deck2);
         $this->player2->getSortedCards();
 
+        $this->board1 = [];
+        $this->board2 = [];
+    }
+    public function playTurn($player, $deck, $board)
+    {
+         $card = $player->cards[0];
+         $board[] = $card;
 
+         return $board;
     }
 
     public function play()
     {
         $this->init();
 
+        for ($i = 1; $i <= 1; $i++) {
+            $this->board1 = $this->playTurn($this->player1, $this->deck1,$this->board1);
+            $this->board2 = $this->playTurn($this->player2, $this->deck2,$this->board2);
+
+        }
+        // var_dump($this->board1);
+
         return $this->render('hand.html.twig', [
             'playerone' => $this->player1,
             'playertwo' => $this->player2,
             'deckone' => $this->deck1,
             'decktwo' => $this->deck2,
+            'boardone' => $this->board1,
+            'boardtwo' => $this->board2,
         ]);
     }
+
 }

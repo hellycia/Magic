@@ -7,6 +7,6 @@ list:
     controller: App\Controller\MagicController::list
 
 
-init:
+play:
     path: /play
     controller: App\Controller\MagicController::play
